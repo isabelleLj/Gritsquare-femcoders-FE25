@@ -25,6 +25,11 @@ Add emojis to your message*
 
 Bubble sound when new message gets added
 
+Translate the page feature
+
+Delay on sending messages, Anti-Spam
+
+Remove messages
 
 **Added by contributor*
 ### Message Board
@@ -65,5 +70,7 @@ Likes leaderboard [Isak](https://github.com/Isakgit24)
 Button to spawn bubbles that pop when you press them [Elias](https://github.com/eliassjoholm)
 
 Add emojis to messages [Jack](https://github.com/jackgustafsson)
+
+Anti-spam and translate button [Ali](https://github.com/Hammadi15)
 
 ## Sources
