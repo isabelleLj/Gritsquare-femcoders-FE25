@@ -121,80 +121,75 @@ a {
   font-weight: bold;
 }
 
-/* Guidelines-card*/
-#guidelines {
-  position: fixed;
-  top: 150px;
-  left: 320px;
-  background-color: white;
-  border-radius: 30px;
-  border: 6px solid #ffbd59;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 15px;
-  z-index: 1000;
-}
+/* =================
+Mobile-first styling 
+================== */
 
-#guidelines h2 {
-  margin-top: 0;
-}
-
-#guidelines button#closeBtn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #ec709a;
-  border: 4px solid #ffbd59;
-  color: white;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* card/formulär */
-#card {
-  position: fixed;
-  top: 150px;
-  bottom: 200px;
-  left: 20px;
-  background-color: white;
-  padding: 15px;
-  border-radius: 30px;
-  border: solid 6px #ffbd59;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 250px;
-  height: 440px;
-  z-index: 1000;
+/* Gudielines/Card comon styling */
+#card, #guidelines {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 500px;
+    max-height: 80vh;
+    min-width: 250px;
+    overflow-y: auto;
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 30px;
+    border: 6px solid var(--peach);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
 }
 
 .hidden {
   display: none;
 }
 
-#card input {
-  width: 80%;
-  padding: 8px;
-  margin-bottom: 10px;
-  padding-left: 10px;
-  border-radius: 20px;
-  border: 4px solid #ffbd59;
+/* Gudielines-specific styling */
+#guidelines h2{
+    margin-top: 0;
 }
 
-#card button {
-  width: 30%;
-  padding: 8px;
-  background-color: #ec709a;
-  color: white;
-  border: 4px solid #ffbd59;
-  border-radius: 20px;
-  cursor: pointer;
-  z-index: 1000;
+#guidelines button#closeBtn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--secondary);
+    border: 4px solid var(--peach);
+    color: var(--white);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-weight: bold;
 }
+
+/* Card-specific styling */
+#card input {
+    width: 80%;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: 4px solid var(--peach);
+}
+
+#card button{
+    width: 30%;
+    padding: 8px;
+    background-color: var(--secondary);
+    color: var(--white);
+    border: var(--peach);
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
 
 /*Jack: emojis stylad här*/
 #emojis {
-  border: 4px solid #ffbd59;
+  border: 4px solid var(--peach);
   border-radius: 20px;
   padding: 8px;
 }
@@ -269,6 +264,30 @@ a {
   border: 2px solid #007bff;
 }
 
+#selectColor{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+}
+
+.color-option.selected {
+    border: 3px solid #333;
+}
+
 /* Footer */
 footer {
   padding: 0.5rem;
@@ -292,8 +311,22 @@ footer {
   border-radius: 2rem;
 }
 
+
+/* =================
+Tablet / Desktop styling 
+================== */
 /* Breakpoint tablet */
 @media (min-width: 768px) {
+    #card, #guidelines {
+        top: 50px;
+        left: 50%;         
+        max-width: 600px;
+        max-height: 80vh;
+    }
+    #gifResults, #selectedGifPreview {
+        grid-template-columns: repeat(4, 1fr);
+        height: 200px;
+    }    
 }
 
 /* Breakpoint desktop */
@@ -325,13 +358,15 @@ footer {
     display: none !important;
   }
 
-  #card {
-    height: 700px;
-    width: 500px;
-  }
+        #card, #guidelines {
+        top: 80px;          
+        left: 40%;         
+        max-width: 500px;
+        max-height: 80vh;
+    }
 
-  #gifResults {
-    height: 400px;
-    grid-template-columns: repeat(2, 1fr);
-  }
+    #gifResults, #selectedGifPreview {
+        height: 400px;
+        grid-template-columns: repeat(2, 1fr); 
+    }
 }
