@@ -3,6 +3,7 @@ import { push, ref, query, orderByChild, onValue, serverTimestamp, runTransactio
 import { censorBadWords } from "./censor.js";
 import { searchGifs, displayGifResults, getSelectedGif, clearSelectedGif } from "./gifapi.js";
 
+const notifSound = document.getElementById("notifSound");
 const messageContainer = document.querySelector('#messages-display');
 const renderedNotes = new Set();
 
@@ -64,8 +65,13 @@ function render(text, id, createdAt, likes, gifUrl) {
     if (newPost && !renderedNotes.has(id)) {
         noteCard.classList.add('new-post');
 
-        void noteCard.offsetWidth;
+       // ljud,notification för när meddelanden dyker upp
+        notifSound.currentTime = 0; 
+        notifSound.play().catch(() => {}); 
+
+         void noteCard.offsetWidth;
         renderedNotes.add(id);
+  
     }
 
     const likeBtn = document.createElement('button');
