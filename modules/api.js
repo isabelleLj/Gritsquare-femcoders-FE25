@@ -166,7 +166,15 @@ const card = document.querySelector('#card');
 const guidelinesCard = document.querySelector('#guidelines');
 const closeBtn = document.querySelector('#closeBtn')
 
-let guidelinesManuallyClosed = false; //flagga för om guidelines har stängts av manuellt
+//
+function showGuidelines() {
+    const lastClosed = localStorage.getItem("guidelinesClosedAt");
+    const oneDay = 24 * 60 * 60 * 1000; // 24 timmar i ms
+    const now = Date.now();
+
+    return !lastClosed || (now - lastClosed > oneDay);
+}
+ 
 
 openBtn.addEventListener('click', () => {
     const cardWasHidden = card.classList.contains('hidden') //kollar om formuläret är stängt
@@ -174,23 +182,28 @@ openBtn.addEventListener('click', () => {
     card.classList.toggle('hidden');  
 
     if(cardWasHidden) {
-        //om formuläret öppnades vid 'click'-> visa guidelines
-        if (!guidelinesManuallyClosed){
+        // Om formuläret öppnas → visa guidelines bara om det gått mer än 24h
+        if (showGuidelines()) {
             guidelinesCard.classList.remove('hidden');
         }
     } else {
-        // om formuläret stängdes vid 'click'-> flagga nollställs och guidelines stängs
-        guidelinesManuallyClosed = false;
-        guidelinesCard.classList.add('hidden') 
+        // Om formuläret stängs → stäng guidelines (men behåll timestamp)
+        guidelinesCard.classList.add('hidden');
     }
 });
 
 // Stäng guidelines kortet manuellt
 closeBtn.addEventListener('click', () => {
     guidelinesCard.classList.add('hidden');
-    guidelinesManuallyClosed = true;
+
+    // Spara nuvarande timestamp i localStorage
+    localStorage.setItem("guidelinesClosedAt", Date.now());
 });
 
+// Läs guidelines manuellt med knapp, oavsett 24h
+readGuidelinesBtn.addEventListener('click', () => {
+    guidelinesCard.classList.remove('hidden');
+});
 
 // message card här (Elin)
 const form = document.querySelector('#msgForm');
@@ -222,8 +235,6 @@ form.addEventListener("submit", async (e) => {
   gifSearchInput.value = '';
   gifResults.innerHTML = '';
   clearSelectedGif();
-  guidelinesCard.classList.add('hidden') //guidelines stängs
-  guidelinesManuallyClosed = false; // flagga nollställs
 });
 
 

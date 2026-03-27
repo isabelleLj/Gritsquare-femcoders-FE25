@@ -19,7 +19,6 @@ menus.forEach(nav => {
     });
 });
 
-
 // Button for dark-mode
 const darkButtons = document.querySelectorAll('.dark-mode');
 

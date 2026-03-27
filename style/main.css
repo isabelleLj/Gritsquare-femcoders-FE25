@@ -14,7 +14,7 @@
 
 /* DARK MODE STYLING */
 body.dark {
-  background-color: #363627ed;
+  background-color:var(--darkmodePrimary);
 }
 
 body.dark h1 {
@@ -26,10 +26,6 @@ body.dark p {
 }
 
 body.dark .post-it p {
-  color: var(--black);
-}
-
-body.dark #guidelines p {
   color: var(--black);
 }
 
@@ -84,6 +80,13 @@ body.dark #guidelines p {
 .dark-mode:active::after {
   background-color: #c71585;
 }
+
+body.dark #guidelines,
+body.dark #card {
+  background-color: #363627;
+  color: var(--white);
+}
+
 /* BASE STYLING */
 body {
   margin: 0;
